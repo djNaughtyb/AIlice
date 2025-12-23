@@ -1,0 +1,25 @@
+{
+  "capabilities": {
+    "web_scraping": {
+      "enabled": true,
+      "permissions": ["read", "write"],
+      "rate_limit": "100/hour",
+      "endpoints": ["/api/scrape", "/api/browse"],
+      "description": "Web browsing, scraping, and automation"
+    },
+    "social_media": {
+      "enabled": true,
+      "platforms": ["twitter", "linkedin"],
+      "rate_limit": "50/hour",
+      "endpoints": ["/api/social/post", "/api/social/schedule"],
+      "description": "Social media posting and management"
+    },
+    "cloud_management": {
+      "enabled": false,
+      "requires_admin": true,
+      "providers": ["aws", "gcp", "digitalocean"],
+      "endpoints": ["/api/cloud/deploy", "/api/cloud/manage"],
+      "description": "Cloud infrastructure management (admin only)"
+    }
+  }
+}

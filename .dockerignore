@@ -1,0 +1,128 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+.github
+
+# Python cache
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Documentation
+docs/
+*.md
+!README.md
+*.rst
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+logs/
+data/
+chat_history/
+
+# Environment files (these should be set via Cloud Run env vars)
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Model files (if any large models are stored locally)
+models/
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+
+# Jupyter notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Package manager files
+node_modules/
+package-lock.json
+yarn.lock
+
+# CI/CD
+.travis.yml
+.circleci/
+.gitlab-ci.yml
+azure-pipelines.yml
+
+# Docker files (to avoid recursion)
+Dockerfile.dev
+docker-compose*.yml
+
+# Test files
+tests/
+test_*.py
+*_test.py
+
+# Examples and samples
+examples/
+samples/
