@@ -1,7 +1,10 @@
 
 <div align= "center">
     <img src="./ailice/ui/static/AIliceLogo.png" height=256>
-    <h1>Ailice</h1>
+    <h1>AIlice - ViralSpark Enhanced Edition</h1>
+
+> **🌟 Enhanced with Enterprise-Grade Features**  
+> Comprehensive API Platform | Stripe Payments | Media Processing | Real-time Collaboration
 
 [![forks](https://img.shields.io/github/forks/myshell-ai/AIlice)](https://github.com/myshell-ai/AIlice)
 [![stars](https://img.shields.io/github/stars/myshell-ai/AIlice)](https://github.com/myshell-ai/AIlice)
@@ -12,12 +15,248 @@
 </div>
 
 <p align="center">
+  <a href="#-viralspark-enhancements">Enhancements</a> •
   <a href="#quick-start">Quick Start</a> •
+  <a href="#stripe-setup">Stripe Setup</a> •
+  <a href="#api-documentation">API Docs</a> •
   <a href="https://www.youtube.com/@stevenlu-zh6ds">Demo</a> •
-  <a href="#development">Development</a> •
-  <a href="https://twitter.com/stevenlu1729">Twitter</a> •
-  <a href="https://www.reddit.com/r/AIlice/">Reddit</a>
+  <a href="#development">Development</a>
 </p>
+
+---
+
+## 🎯 ViralSpark Enhancements
+
+This enhanced edition of AIlice includes a **comprehensive API platform** designed for production use with enterprise-grade features:
+
+### 💳 **Stripe Payment Integration**
+- Complete subscription management ($49.99/mo)
+- Automated billing and invoice generation
+- Webhook handlers for real-time payment events
+- Subscription status middleware
+- Cancel/reactivate subscriptions
+
+### 📊 **12 Major API Endpoint Categories**
+
+#### 🔐 **A. Authentication & User Management**
+- User registration and login
+- JWT-based authentication
+- Role-based access control (User/Admin)
+
+#### 📝 **B. Content/Data CRUD**
+- Full CRUD operations for items
+- Support for multiple content types (posts, articles, products)
+- Draft/published status management
+- Metadata and tagging support
+
+#### 🎬 **C. Media Handling with FFmpeg**
+- Upload videos, audio, and images
+- Stream media files
+- Transcode to different formats (low/medium/high quality)
+- Automatic metadata extraction (duration, dimensions)
+
+#### 📈 **D. Analytics & Metrics**
+- Usage statistics and trends
+- Error tracking and reporting
+- Performance monitoring per endpoint
+- Custom date range analysis
+
+#### 🔔 **E. Notifications**
+- Send notifications to users
+- Notification history
+- Mark as read functionality
+- Action URLs for interactive notifications
+
+#### 💰 **F. Payments & Billing**
+- Stripe checkout sessions
+- Subscription management
+- Invoice history
+- Webhook processing
+
+#### 🔍 **G. Search & Discovery**
+- Full-text search across content
+- Type-based filtering
+- Personalized recommendations
+- Relevance scoring
+
+#### 🤖 **H. AI/ML Inference**
+- Support for multiple providers (OpenAI, Google Gemini, Replicate)
+- Text generation and completion
+- Model training (placeholder)
+- Custom model registry
+
+#### 👥 **I. Collaboration**
+- Real-time chat rooms
+- Message history
+- Resource sharing (public/private)
+- Permission management (view/edit/admin)
+
+#### ⚙️ **J. System & Admin**
+- Health checks
+- System statistics (CPU, memory, disk)
+- Configuration management
+- Log viewing (admin only)
+
+#### 📁 **K. File Management**
+- File upload/download
+- Tagging and organization
+- Size limit enforcement (100MB default)
+- Multiple file types support
+
+#### 🔌 **L. External Integrations**
+- Google Drive sync
+- TradingView integration
+- GitHub, Slack, Twitter, LinkedIn support
+- OAuth token management
+- Sync status tracking
+
+### 🚀 **Optimizations**
+- **Removed heavy ML dependencies** (torch, transformers) - reduced Docker image size by ~5GB
+- **API-based LLM integrations** only - no local model hosting required
+- **Redis caching** for improved performance
+- **PostgreSQL** for reliable data persistence
+- **FFmpeg** integration for media processing
+- **WebSocket support** for real-time features
+
+### 📖 **Complete Documentation**
+- See [`API_ENDPOINTS.md`](./API_ENDPOINTS.md) for detailed endpoint documentation
+- Interactive Swagger UI at `/docs`
+- ReDoc documentation at `/redoc`
+
+---
+
+## 🛠️ Stripe Setup
+
+To enable payment processing, configure Stripe:
+
+### 1. Get Your Stripe Keys
+
+1. Sign up at [Stripe Dashboard](https://dashboard.stripe.com/)
+2. Navigate to **Developers** → **API keys**
+3. Copy your **Publishable key** and **Secret key**
+
+### 2. Configure Environment Variables
+
+Add to your `.env` file:
+
+```bash
+# Stripe Configuration
+STRIPE_SECRET_KEY=sk_test_your_secret_key_here
+STRIPE_PUBLISHABLE_KEY=pk_test_your_publishable_key_here
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
+
+# Product Configuration (pre-configured)
+STRIPE_PRODUCT_ID=prod_TYtmG0y2uNXjSU
+STRIPE_PRICE_ID=price_1Sblz7LZxEDQErW5uQyWN5F3
+STRIPE_PRICE_AMOUNT=4999
+STRIPE_CURRENCY=usd
+```
+
+### 3. Configure Webhooks
+
+1. In Stripe Dashboard, go to **Developers** → **Webhooks**
+2. Click **Add endpoint**
+3. Set endpoint URL: `https://your-domain.com/api/billing/webhook`
+4. Select events to listen to:
+   - `checkout.session.completed`
+   - `customer.subscription.updated`
+   - `customer.subscription.deleted`
+   - `invoice.payment_succeeded`
+   - `invoice.payment_failed`
+5. Copy the **Webhook signing secret** to `STRIPE_WEBHOOK_SECRET`
+
+### 4. Test Your Integration
+
+```bash
+# Install Stripe CLI for testing
+brew install stripe/stripe-cli/stripe
+
+# Login
+stripe login
+
+# Forward webhooks to local server
+stripe listen --forward-to localhost:8080/api/billing/webhook
+
+# Test payment
+stripe trigger checkout.session.completed
+```
+
+---
+
+## 📚 API Documentation
+
+### Access Interactive Documentation
+
+Once the server is running, visit:
+- **Swagger UI**: http://localhost:8080/docs
+- **ReDoc**: http://localhost:8080/redoc
+
+### Quick API Examples
+
+#### 1. Register and Login
+
+```bash
+# Register
+curl -X POST http://localhost:8080/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"testuser","email":"test@example.com","password":"secret123"}'
+
+# Login
+curl -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"testuser","password":"secret123"}'
+```
+
+#### 2. Create Subscription
+
+```bash
+# Create checkout session
+curl -X POST http://localhost:8080/api/billing/checkout \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "success_url":"https://your-app.com/success",
+    "cancel_url":"https://your-app.com/cancel"
+  }'
+```
+
+#### 3. Upload and Process Media
+
+```bash
+# Upload video
+curl -X POST http://localhost:8080/api/media/upload \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -F "file=@video.mp4"
+
+# Transcode video
+curl -X POST http://localhost:8080/api/media/1/transcode \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"output_format":"mp4","quality":"high"}'
+```
+
+#### 4. AI Inference
+
+```bash
+# Generate text with GPT-4
+curl -X POST http://localhost:8080/api/ai/predict \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model_id":"openai:gpt-4",
+    "input_data":{"prompt":"Hello, AI!"}
+  }'
+```
+
+#### 5. Search Content
+
+```bash
+# Search across all content
+curl -X GET "http://localhost:8080/api/search?q=keyword&limit=10" \
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+For complete API documentation, see [`API_ENDPOINTS.md`](./API_ENDPOINTS.md).
 
 ---
 
@@ -349,7 +588,7 @@ In Ailice, we use the term "module" to specifically refer to components that pro
   "services": {
     ...
     "scripter": {"cmd": "python3 -m ailice.modules.AScripter --addr=tcp://127.0.0.1:59000",
-	               "addr": "tcp://127.0.0.1:59000"},
+                       "addr": "tcp://127.0.0.1:59000"},
     ...
   }
 ```

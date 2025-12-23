@@ -1,0 +1,93 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: ailice-postgres
+    environment:
+      POSTGRES_DB: ailice_db
+      POSTGRES_USER: ailice
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme123}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - ailice-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ailice -d ailice_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # AIlice Application
+  ailice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ailice-app
+    environment:
+      DATABASE_URL: postgresql://ailice:${DB_PASSWORD:-changeme123}@postgres:5432/ailice_db
+      ENVIRONMENT: production
+      PORT: 8080
+      HOST: 0.0.0.0
+      CORS_ORIGINS: "*"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config.json:/root/.config/ailice/Steven\ Lu/config.json:ro
+      - ./capabilities_config.json:/app/capabilities_config.json:ro
+      - ailice_data:/app/data
+      - ailice_logs:/app/logs
+      - ailice_chat_history:/app/chat_history
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ailice-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+  # Optional: PgAdmin for database management
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: ailice-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@ailice.local
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin123}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - ailice-network
+    profiles:
+      - admin
+    restart: unless-stopped
+
+networks:
+  ailice-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  ailice_data:
+    driver: local
+  ailice_logs:
+    driver: local
+  ailice_chat_history:
+    driver: local
+  pgadmin_data:
+    driver: local

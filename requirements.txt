@@ -1,0 +1,101 @@
+# Core AIlice dependencies
+pyzmq
+pydantic>=2
+termcolor
+simplejson
+appdirs>=1
+psutil>=5
+numpy
+pillow>=10
+flask>=3
+werkzeug>=3
+importlib-metadata>=7
+googlesearch-python
+duckduckgo-search>=7
+urlextract>=1
+selenium>=4
+beautifulsoup4
+scipy>=1
+scikit-learn>=1
+arxiv>=2
+mcp
+transitions
+
+# FastAPI and server dependencies
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+slowapi>=0.1.9
+
+# PostgreSQL dependencies
+psycopg2-binary>=2.9.0
+sqlalchemy>=2.0.0
+asyncpg>=0.29.0
+
+# Additional requested packages
+pandas>=2.0.0
+
+# Database migration tools
+alembic>=1.12.0
+
+# Environment variables management
+python-dotenv>=1.0.0
+
+# Health check and monitoring
+prometheus-client>=0.19.0
+
+# Authentication and security
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# AI Model integrations (API clients only - no local models)
+replicate>=0.21.0
+google-generativeai>=0.3.0
+openai>=1
+mistralai>=1
+anthropic>=0
+
+# Stripe payment integration
+stripe>=7.0.0
+
+# Media processing
+ffmpeg-python>=0.2.0
+av>=12
+
+# Social media integrations
+tweepy>=4.14.0
+
+# Additional utilities
+httpx>=0.25.0
+aiofiles>=23.2.1
+redis>=5.0.0
+
+# WebSocket support for real-time features
+websockets>=12.0
+
+# Email sending
+python-email-validator>=2.1.0
+
+# Background tasks
+celery>=5.3.0
+
+# Optional: For PDF reading (lighter alternative)
+PyPDF2>=3.0.0
+
+# CORS and security
+python-cors>=1.0.0
+
+# NOTE: Heavy ML dependencies removed (torch, transformers, accelerate, bitsandbytes, peft, datasets, tensorboard)
+# These are not needed for API-based LLM integrations
+# If you need local model support with GPU, uncomment below and ensure you have CUDA setup:
+# torch>=2
+# transformers>=4
+# accelerate>=0
+# bitsandbytes>=0
+
+# NOTE: Optional packages removed to reduce image size:
+# - gpt4all (use API clients instead)
+# - huggingface_hub (not needed without local models)
+# - einops, librosa (audio processing - use FFmpeg instead)
+# - sounddevice, ChatTTS (speech - use external APIs)
+# - marker-pdf (heavy PDF processing - use PyPDF2 or external services)

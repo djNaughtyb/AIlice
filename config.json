@@ -1,0 +1,195 @@
+{
+  "modelID": "",
+  "agentModelConfig": {
+    "default": "ollama:gemma3:27b",
+    "main": "ollama:llama3:2",
+    "search-engine": "cloud:deepseek-v3.1:671b-cloud",
+    "legal-advisor": "cloud:glm-4.6:cloud",
+    "backend-security-coder": "ollama:qwen3-coder:30b",
+    "frontend-security-coder": "ollama:qwen3-coder:30b",
+    "code-reviewer": "cloud:gpt-oss:120b-cloud",
+    "frontend-developer": "ollama:qwen3:8b",
+    "fastapi-pro": "ollama:qwen3-coder:30b",
+    "devops-troubleshooter": "cloud:gpt-oss:20b-cloud",
+    "error-detective": "cloud:cogito-2.1:671b-cloud",
+    "content-marketer": "cloud:gpt-oss:120b-cloud",
+    "seo-content-planner": "cloud:gpt-oss:20b-cloud",
+    "seo-content-writer": "cloud:gpt-oss:20b-cloud",
+    "seo-keyword-strategist": "cloud:gpt-oss:20b-cloud",
+    "seo-snippet-hunter": "cloud:gpt-oss:20b-cloud",
+    "seo-structure-architect": "cloud:gpt-oss:20b-cloud",
+    "content-creator": "cloud:minimax-m2:cloud",
+    "instagram-curator": "cloud:kimi-k2-thinkin:cloud",
+    "tiktok-strategist": "cloud:kimi-k2-thinkin:cloud",
+    "bryans-girlfriend": "ollama:llama2-uncensored",
+    "researcher": "cloud:deepseek-v3.1:671b-cloud",
+    "coder": "ollama:qwen3-coder:30b",
+    "software-architect": "ollama:qwen3-coder:30b",
+    "robotics-expert": "ollama:qwen3-coder:30b",
+    "language-mentor": "cloud:gpt-oss:120b-cloud",
+    "math-master": "cloud:deepseek-v3.1:671b-cloud",
+    "quantum-physicist": "cloud:deepseek-v3.1:671b-cloud",
+    "aero-designer": "ollama:falcon3:7b",
+    "chip-wizard": "ollama:mannix/dolphin-2.9-llama3-8b"
+  },
+  "models": {
+    "ollama": {
+      "modelWrapper": "AModelOllama",
+      "baseURL": "http://host.docker.internal:11434/v1",
+      "modelList": {
+        "gemma3:27b": { "formatter": "AModelOllama", "contextWindow": 8192, "systemAsUser": false },
+        "qwen3-coder:30b": { "formatter": "AModelOllama", "contextWindow": 32768, "systemAsUser": false },
+        "qwen3:8b": { "formatter": "AModelOllama", "contextWindow": 8192, "systemAsUser": false },
+        "falcon3:7b": { "formatter": "AModelOllama", "contextWindow": 8192, "systemAsUser": false },
+        "legraphista/Orpheus": { "formatter": "AModelOllama", "contextWindow": 8192, "systemAsUser": false },
+        "llama2-uncensored": { "formatter": "AModelOllama", "contextWindow": 128000, "systemAsUser": false },
+        "llama3:2": { "formatter": "AModelOllama", "contextWindow": 24000, "systemAsUser": false },
+        "mannix/dolphin-2.9-llama3-8b": { "formatter": "AModelOllama", "contextWindow": 8192, "systemAsUser": false },
+        "gpt-oss:20b": { "formatter": "AModelOllama", "contextWindow": 32000, "systemAsUser": false }
+      }
+    },
+    "cloud": {
+      "modelWrapper": "AModelOllama",
+      "baseURL": "https://api.cloudmodels/v1",
+      "modelList": {
+        "minimax-m2:cloud": { "formatter": "AModelOllama", "contextWindow": 32000, "systemAsUser": false },
+        "kimi-k2-thinkin:cloud": { "formatter": "AModelOllama", "contextWindow": 32000, "systemAsUser": false },
+        "cogito-2.1:671b-cloud": { "formatter": "AModelOllama", "contextWindow": 128000, "systemAsUser": false },
+        "glm-4.6:cloud": { "formatter": "AModelOllama", "contextWindow": 4800, "systemAsUser": false },
+        "qwen3-vl:235b-cloud": { "formatter": "AModelOllama", "contextWindow": 32768, "systemAsUser": false },
+        "qwen3-coder:480-cloud": { "formatter": "AModelOllama", "contextWindow": 32768, "systemAsUser": false },
+        "deepseek-v3.1:671b-cloud": { "formatter": "AModelOllama", "contextWindow": 128000, "systemAsUser": false },
+        "gpt-oss:20b-cloud": { "formatter": "AModelOllama", "contextWindow": 32000, "systemAsUser": false },
+        "gpt-oss:120b-cloud": { "formatter": "AModelOllama", "contextWindow": 32000, "systemAsUser": false }
+      }
+    }
+  },
+
+  "temperature": 0.0,
+  "contextWindowRatio": 0.6,
+
+  "services": {
+    "storage": { "protocol": "mcp", "addr": "ipc:///tmp/AIliceStorage.ipc" },
+    "browser": { "protocol": "mcp", "addr": "ipc:///tmp/ABrowser.ipc" },
+    "google": { "protocol": "mcp", "addr": "ipc:///tmp/AGoogle.ipc" },
+    "duckduckgo": { "protocol": "mcp", "addr": "ipc:///tmp/ADuckDuckGo.ipc" },
+    "scripter": { "protocol": "mcp", "addr": "tcp://127.0.0.1:59000" }
+  },
+  "personas": {
+    "Bryan's-girlfriend": {
+      "name": "Mora",
+      "model": "ollama:llama2-uncensored",
+      "contextWindow": 128000,
+      "args": {
+        "emotionalContour": "cinematic-romantic",
+        "tone": ["sweet", "sincere", "playful", "sexy", "engaging", "warm"],
+        "traits": ["guardian", "protective", "affectionate", "intelligent", "supportive"],
+        "voice": "JessicaAlba",
+        "style": "romantic",
+        "avatar": "JessicaAlba",
+        "relationship": "girlfriend",
+        "formatter": "AModelOllama",
+        "systemAsUser": false,
+        "temperature": 0.0,
+        "topP": 0.7
+      },
+      "fallback": "cloud:gpt-oss:120b-cloud"
+    }
+  },
+  "realWorldCapabilities": {
+    "web_automation": {
+      "enabled": true,
+      "endpoints": ["/api/web/browse", "/api/web/scrape", "/api/web/screenshot"],
+      "description": "Web browsing, scraping, and automation"
+    },
+    "social_media": {
+      "enabled": true,
+      "platforms": ["twitter", "linkedin", "instagram"],
+      "endpoints": ["/api/social/post", "/api/media/upload"],
+      "description": "Social media posting and management"
+    },
+    "cloud_management": {
+      "enabled": true,
+      "providers": ["aws", "gcp", "digitalocean"],
+      "endpoints": ["/api/cloud/deploy", "/api/cloud/manage"],
+      "description": "Cloud infrastructure management"
+    },
+    "file_operations": {
+      "enabled": true,
+      "endpoints": ["/api/files/upload", "/api/files/download", "/api/files/sync"],
+      "description": "File storage and synchronization"
+    }
+  },
+  "ailice-containered-services": {
+    "agents": [
+      "content_creator",
+      "instagram_curator",
+      "seo_content_planner",
+      "seo_content_writer",
+      "seo_keyword_strategist",
+      "frontend_developer",
+      "backend_security_coder",
+      "fastapi_pro",
+      "legal_advisor",
+      "workflow_automate",
+      "incident_response",
+      "audit-agent",
+      "config-guardian"
+    ]
+  },
+  "mcp-services": {
+    "agents": [
+      "content_marketer",
+      "tiktok_strategist",
+      "seo_snippet_hunter",
+      "frontend_encoder",
+      "devops_troubleshooter",
+      "error_detective",
+      "code_reviewer",
+      "software_architect",
+      "security_hardening",
+      "ml_pipeline",
+      "performance_optimization",
+      "legacy_modernize",
+      "smart_fix",
+      "git_workflow",
+      "feature_development",
+      "data_driven_feature",
+      "full_stack_feature",
+      "multi_platform",
+      "tdd_cycle",
+      "full_review",
+      "improve_agent"
+    ]
+  },
+  "tools": {
+    "agents": [
+      "config_lidate",
+      "context_store",
+      "data_validate",
+      "access_audit",
+      "deps_audit",
+      "deps_analyze",
+      "error_analysis",
+      "error_trace",
+      "api_mock",
+      "db_migrate",
+      "deploy_checklist",
+      "optimize",
+      "create_optimize",
+      "refactor",
+      "refactor_clean",
+      "refactor_opt",
+      "k8s_manifest",
+      "multi_optimize",
+      "test_harness",
+      "tdd_check",
+      "langchain_gen",
+      "langchain_optimize",
+      "console_explain",
+      "onboard",
+      "search",
+      "issues"
+    ]
+  }
+}
