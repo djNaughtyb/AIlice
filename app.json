@@ -1,0 +1,147 @@
+{
+  "name": "viralspark-ailice",
+  "description": "AIlice - Fully Autonomous AI Agent with Enterprise-Grade Features. Enhanced with Stripe payments, 50+ API endpoints, media processing, real-time collaboration, and advanced AI capabilities.",
+  "repository": "https://github.com/djNaughtyb/AIlice",
+  "logo": "https://raw.githubusercontent.com/djNaughtyb/AIlice/main/ailice/ui/static/AIliceLogo.png",
+  "keywords": [
+    "ai-agent",
+    "autonomous-agent",
+    "stripe-integration",
+    "fastapi",
+    "google-cloud-run",
+    "llm",
+    "chatbot",
+    "enterprise-ai"
+  ],
+  "env": {
+    "DATABASE_URL": {
+      "description": "PostgreSQL database connection string (e.g., postgresql://user:pass@host:5432/dbname). Required for storing user data, subscriptions, and analytics.",
+      "required": true,
+      "value": ""
+    },
+    "JWT_SECRET_KEY": {
+      "description": "Secret key for JWT token generation (min 32 characters). Use a secure random string.",
+      "required": true,
+      "generator": "secret"
+    },
+    "STRIPE_SECRET_KEY": {
+      "description": "Stripe secret API key (sk_live_... or sk_test_...). Get from https://dashboard.stripe.com/apikeys",
+      "required": true,
+      "value": ""
+    },
+    "STRIPE_WEBHOOK_SECRET": {
+      "description": "Stripe webhook signing secret (whsec_...). Create at https://dashboard.stripe.com/webhooks after deployment.",
+      "required": true,
+      "value": ""
+    },
+    "STRIPE_PRICE_ID": {
+      "description": "Stripe Price ID for subscription ($49.99/mo by default). Get from Stripe Dashboard.",
+      "required": false,
+      "value": "price_1Sblz7LZxEDQErW5uQyWN5F3"
+    },
+    "STRIPE_PRODUCT_ID": {
+      "description": "Stripe Product ID for your subscription. Get from Stripe Dashboard.",
+      "required": false,
+      "value": "prod_TYtmG0y2uNXjSU"
+    },
+    "REPLICATE_API_TOKEN": {
+      "description": "Replicate API token for AI model inference. Get from https://replicate.com/account/api-tokens",
+      "required": false,
+      "value": ""
+    },
+    "GEMINI_API_KEY": {
+      "description": "Google Gemini API key for AI capabilities. Get from https://makersuite.google.com/app/apikey",
+      "required": false,
+      "value": ""
+    },
+    "GOOGLE_API_KEY": {
+      "description": "Google API key for various Google services. Get from Google Cloud Console.",
+      "required": false,
+      "value": ""
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for GPT models. Get from https://platform.openai.com/api-keys",
+      "required": false,
+      "value": ""
+    },
+    "TWITTER_API_KEY": {
+      "description": "Twitter API key for social media integration.",
+      "required": false,
+      "value": ""
+    },
+    "TWITTER_API_SECRET": {
+      "description": "Twitter API secret for social media integration.",
+      "required": false,
+      "value": ""
+    },
+    "TWITTER_ACCESS_TOKEN": {
+      "description": "Twitter access token for social media posting.",
+      "required": false,
+      "value": ""
+    },
+    "TWITTER_ACCESS_SECRET": {
+      "description": "Twitter access token secret for social media posting.",
+      "required": false,
+      "value": ""
+    },
+    "CORS_ORIGINS": {
+      "description": "Comma-separated list of allowed CORS origins (e.g., https://app.example.com,https://admin.example.com). Use * for all origins (not recommended for production).",
+      "required": false,
+      "value": "*"
+    },
+    "ENVIRONMENT": {
+      "description": "Application environment: production or development",
+      "required": false,
+      "value": "production"
+    },
+    "AILICE_MODEL_ID": {
+      "description": "Override default AI model ID (optional). See config.json for available models.",
+      "required": false,
+      "value": ""
+    },
+    "AILICE_TEMPERATURE": {
+      "description": "AI model temperature (0.0-1.0). Lower = more deterministic, Higher = more creative.",
+      "required": false,
+      "value": "0.0"
+    }
+  },
+  "options": {
+    "allow-unauthenticated": true,
+    "memory": "2Gi",
+    "cpu": "2",
+    "port": 8080,
+    "http2": true,
+    "max-instances": 100,
+    "min-instances": 0,
+    "concurrency": 80,
+    "timeout": 300,
+    "service-account": "",
+    "labels": {
+      "app": "viralspark-ailice",
+      "version": "1.0.0",
+      "managed-by": "cloud-run-button"
+    },
+    "cloudbuild": {
+      "buildArgs": []
+    }
+  },
+  "regions": {
+    "default": "us-central1",
+    "supported": [
+      "us-central1",
+      "us-east1",
+      "us-west1",
+      "europe-west1",
+      "asia-east1",
+      "asia-northeast1"
+    ]
+  },
+  "hooks": {
+    "prebuild": "",
+    "postdeploy": "echo 'Deployment complete! Configure Stripe webhooks at: https://dashboard.stripe.com/webhooks'"
+  },
+  "addons": [],
+  "buildpacks": [],
+  "formation": {},
+  "stack": "container"
+}

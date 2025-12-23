@@ -1,0 +1,178 @@
+# This file specifies files that are intentionally untracked by gcloud
+# and should be excluded from Cloud Build/Cloud Run deployments.
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# GitHub
+.github/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Documentation
+docs/_build/
+*.md
+!README.md
+!CLOUD_RUN_BUTTON_GUIDE.md
+
+# Local development
+*.log
+*.pid
+*.seed
+*.pid.lock
+.env
+.env.local
+.env.*.local
+
+# Data directories (exclude from build, use volumes instead)
+data/
+logs/
+chat_history/
+tmp/
+temp/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Node (if any frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+*.swp
+*.swo
+*~
+.sass-cache/
+.cache/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Backups
+*.bak
+*.backup
+
+# Large media files (should be in Cloud Storage)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.flv
+*.wmv
+*.wav
+*.mp3
+*.flac
+*.ogg
+
+# Docker
+.dockerignore
+docker-compose*.yml
+
+# Kubernetes
+k8s/
+kubernetes/
+
+# CI/CD
+.circleci/
+.travis.yml
+.gitlab-ci.yml
+azure-pipelines.yml
+Jenkinsfile
+
+# Uploaded files (should use Cloud Storage)
+uploads/
+Uploads/
+
+# Build artifacts
+*.tar.gz
+*.zip
+*.rar
+
+# Editor configs
+.editorconfig
+
+# License files that don't need to be in container
+LICENSE*
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+
+# Examples and tests
+examples/
+tests/
+test/
+*.test.js
+*.test.py
+*.spec.js
+*.spec.py

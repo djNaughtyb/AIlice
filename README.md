@@ -23,6 +23,35 @@
   <a href="#development">Development</a>
 </p>
 
+
+## 🚀 Quick Deploy to Google Cloud Run
+
+Deploy AIlice to Google Cloud Run with a single click! This will automatically:
+- Build the Docker container
+- Configure the Cloud Run service
+- Set up environment variables
+- Deploy to your Google Cloud project
+
+<div align="center">
+
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run?git_repo=https://github.com/djNaughtyb/AIlice.git&revision=enhanced-sync)
+
+</div>
+
+**Prerequisites:**
+- Google Cloud account with billing enabled
+- PostgreSQL database (Cloud SQL recommended)
+- Stripe account with API keys
+- AI API keys (OpenAI, Gemini, Replicate - optional but recommended)
+
+**After deployment:**
+1. Configure environment variables in the Cloud Run console
+2. Set up your Stripe webhook endpoint
+3. Initialize the database schema
+4. Test the deployment
+
+📖 **Need help?** See our detailed [Cloud Run Deployment Guide](./CLOUD_RUN_BUTTON_GUIDE.md)
+
 ---
 
 ## 🎯 ViralSpark Enhancements
