@@ -1,4 +1,4 @@
-name: Ailice Installation Test
+name: Ailice Installation test
 
 on:
   workflow_dispatch:
