@@ -105,7 +105,8 @@ RUN chmod +x /app/cloud_run_app.py /app/fastapi_app.py
 
 # Use the FastAPI app as entrypoint (or cloud_run_app.py for Flask)
 # To use FastAPI (recommended for new features):
-ENTRYPOINT ["python3", "/app/fastapi_app.py"]
+ENTRYPOINT ["python3", "/app/unified_app.py"]
+# This runs BOTH Flask (AIlice UI) and FastAPI together!
 # To use original Flask app:
 # ENTRYPOINT ["python3", "/app/cloud_run_app.py"]
 
