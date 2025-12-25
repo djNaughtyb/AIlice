@@ -12,7 +12,7 @@ jobs:
       # Checkout your repo (includes band_of_misfits folder)
       - name: Checkout repository
         uses: actions/checkout@v4
-        COPY: band_of_misfits /app/band_of_misfits
+      
 
       # Authenticate to Google Cloud
       - name: Set up gcloud
