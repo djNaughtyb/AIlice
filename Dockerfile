@@ -64,6 +64,9 @@ COPY requirements.txt .
 # This significantly reduces image size. Use API-based LLM integrations instead.
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy the band_of_misfits folder explicitly
+COPY band_of_misfits /app/band_of_misfits
+
 # Copy the entire AIlice codebase
 COPY . .
 
